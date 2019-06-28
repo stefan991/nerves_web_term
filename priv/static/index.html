@@ -1,0 +1,23 @@
+<!-- TODO: remove cdn and use static files instead -->
+<link rel="stylesheet" href="https://unpkg.com/xterm/dist/xterm.css" />
+<script src="https://unpkg.com/xterm/dist/xterm.js"></script>
+<script src="https://unpkg.com/xterm/dist/addons/attach/attach.js"></script>
+<style>
+    body {
+        background: black;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Terminal.applyAddon(attach);
+
+        var url = new URL('/ws', window.location.href);
+        url.protocol = url.protocol.replace('http', 'ws');
+
+        var term = new Terminal();
+        var socket = new WebSocket(url.href);
+        term.attach(socket);
+        term.open(document.getElementById('terminal'));
+    });
+</script>
+<div id="terminal"></div>

@@ -1,6 +1,4 @@
 defmodule NervesWebTerm.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   @target Mix.target()
@@ -8,24 +6,40 @@ defmodule NervesWebTerm.Application do
   use Application
 
   def start(_type, _args) do
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
+    # TODO: check superversion strategy
     opts = [strategy: :one_for_one, name: NervesWebTerm.Supervisor]
     Supervisor.start_link(children(@target), opts)
   end
 
-  # List all child processes to be supervised
   def children(:host) do
-    [
-      # Starts a worker by calling: NervesWebTerm.Worker.start_link(arg)
-      # {NervesWebTerm.Worker, arg},
-    ]
+    []
   end
 
   def children(_target) do
     [
-      # Starts a worker by calling: NervesWebTerm.Worker.start_link(arg)
-      # {NervesWebTerm.Worker, arg},
+      NervesWebTerm.UART,
+      Plug.Cowboy.child_spec(
+        scheme: :http,
+        plug: NervesWebTerm.Router,
+        options: [
+          dispatch: dispatch(),
+          port: 80
+        ]
+      ),
+      Registry.child_spec(
+        keys: :duplicate,
+        name: Registry.NervesWebTerm
+      )
+    ]
+  end
+
+  defp dispatch do
+    [
+      {:_,
+       [
+         {"/ws", NervesWebTerm.SocketHandler, []},
+         {:_, Plug.Cowboy.Handler, {NervesWebTerm.Router, []}}
+       ]}
     ]
   end
 end

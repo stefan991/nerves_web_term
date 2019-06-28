@@ -39,10 +39,14 @@ defmodule NervesWebTerm.MixProject do
       {:shoehorn, "~> 0.4"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
+      {:cowboy, "~> 2.4"},
+      {:plug, "~> 1.7"},
+      {:plug_cowboy, "~> 2.0"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
+      {:circuits_uart, "~> 1.3"},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.6", runtime: false, targets: :rpi},
