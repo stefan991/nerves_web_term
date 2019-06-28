@@ -1,6 +1,7 @@
 # NervesWebTerm
 
-**TODO: Add description**
+This is a simple web based terminal connected to the Raspberry Pi UART.
+It uses https://xtermjs.org as terminal.
 
 ## Targets
 
@@ -16,17 +17,11 @@ https://hexdocs.pm/nerves/targets.html#content
 
 ## Getting Started
 
-To start your Nerves app:
+To start this Nerves app:
   * `export MIX_TARGET=my_target` or prefix every command with
-    `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
+    `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi0`
   * Install dependencies with `mix deps.get`
   * Create firmware with `mix firmware`
   * Burn to an SD card with `mix firmware.burn`
-
-## Learn more
-
-  * Official docs: https://hexdocs.pm/nerves/getting-started.html
-  * Official website: https://nerves-project.org/
-  * Forum: https://elixirforum.com/c/nerves-forum
-  * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
-  * Source: https://github.com/nerves-project/nerves
+  * Connect the Raspberry Pi to some serial port
+  * Open http://nerves.local
