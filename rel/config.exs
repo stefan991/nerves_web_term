@@ -27,7 +27,7 @@ end
 
 release :nerves_web_term do
   set(version: current_version(:nerves_web_term))
-  set(strip_debug_info: true)
+  # set(strip_debug_info: true)
   plugin(Nerves)
   plugin(Shoehorn)
 end
