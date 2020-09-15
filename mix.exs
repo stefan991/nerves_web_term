@@ -38,7 +38,7 @@ defmodule NervesWebTerm.MixProject do
   defp deps do
     [
       # Dependencies for all targets
-      {:nerves, "~> 1.5.0", runtime: false},
+      {:nerves, "~> 1.6.0", runtime: false},
       {:shoehorn, "~> 0.6"},
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
@@ -48,7 +48,7 @@ defmodule NervesWebTerm.MixProject do
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
-      {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
+      {:nerves_pack, "~> 0.3.0", targets: @all_targets},
       {:circuits_uart, "~> 1.3"},
 
       # Dependencies for specific targets
