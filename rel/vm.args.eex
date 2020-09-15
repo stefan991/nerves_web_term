@@ -5,7 +5,7 @@
 ##  for read only filesystem.
 
 # -name nerves_web_term@0.0.0.0
--setcookie yeqwqmawpxq4utmgq6z2ichial5t5ps5imuazm3wd34sjt4zzahgixv4zaciri43
+-setcookie <%= @release.options[:cookie] %>
 
 ## Use Ctrl-C to interrupt the current shell rather than invoking the emulator's
 ## break handler and possibly exiting the VM.
@@ -41,4 +41,3 @@
 -extra --no-halt
 --
 --dot-iex /etc/iex.exs
-
