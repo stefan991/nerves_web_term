@@ -44,7 +44,7 @@ defmodule NervesWebTerm.SocketHandler do
     {:reply, :ping, state}
   end
 
-  def websocket_info(info, state) do
-    {:reply, {:text, info}, state}
+  def websocket_info({:send, data}, state) do
+    {:reply, {:text, data}, state}
   end
 end

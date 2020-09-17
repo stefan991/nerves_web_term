@@ -31,7 +31,7 @@ defmodule NervesWebTerm.UART do
     Registry.NervesWebTerm
     |> Registry.dispatch("TERMINAL", fn entries ->
       for {pid, _} <- entries do
-        Process.send(pid, data, [])
+        Process.send(pid, {:send, data}, [])
       end
     end)
 
