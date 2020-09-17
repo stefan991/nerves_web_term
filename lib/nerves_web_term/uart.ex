@@ -2,7 +2,7 @@ defmodule NervesWebTerm.UART do
   use GenServer
 
   # TODO: make configurable
-  @baudrate 9600
+  @baudrate 115200
   @port "ttyAMA0"
 
   def start_link(_) do
