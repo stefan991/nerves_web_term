@@ -4,7 +4,6 @@
 ##  The cookie needs to be configured prior to vm boot for
 ##  for read only filesystem.
 
-# -name nerves_web_term@0.0.0.0
 -setcookie <%= @release.options[:cookie] %>
 
 ## Use Ctrl-C to interrupt the current shell rather than invoking the emulator's
@@ -18,6 +17,12 @@
 ## Load code at system startup
 ## See http://erlang.org/doc/system_principles/system_principles.html#code-loading-strategy
 -mode embedded
+
+## Disable scheduler busy wait to reduce idle CPU usage and avoid delaying
+## other OS processes. See http://erlang.org/doc/man/erl.html#+sbwt
++sbwt none
++sbwtdcpu none
++sbwtdio none
 
 ## Save the shell history between reboots
 ## See http://erlang.org/doc/man/kernel_app.html for additional options
@@ -41,3 +46,4 @@
 -extra --no-halt
 --
 --dot-iex /etc/iex.exs
+

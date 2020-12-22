@@ -1,14 +1,20 @@
 defmodule NervesWebTerm.Application do
   @moduledoc false
 
-  @target Mix.target()
-
   use Application
 
   def start(_type, _args) do
     # TODO: check superversion strategy
     opts = [strategy: :one_for_one, name: NervesWebTerm.Supervisor]
-    Supervisor.start_link(children(@target), opts)
+
+    children =
+      [
+        # Children for all targets
+        # Starts a worker by calling: NervesWebTerm.Worker.start_link(arg)
+        # {NervesWebTerm.Worker, arg},
+      ] ++ children(target())
+
+    Supervisor.start_link(children, opts)
   end
 
   def children(:host) do
@@ -40,6 +46,10 @@ defmodule NervesWebTerm.Application do
         name: Registry.NervesWebTerm
       )
     ]
+  end
+
+  def target() do
+    Application.get_env(:nerves_web_term, :target)
   end
 
   defp dispatch do
