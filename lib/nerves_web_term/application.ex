@@ -12,7 +12,16 @@ defmodule NervesWebTerm.Application do
   end
 
   def children(:host) do
-    []
+    [
+      Plug.Cowboy.child_spec(
+        scheme: :http,
+        plug: NervesWebTerm.Router,
+        options: [
+          dispatch: dispatch(),
+          port: 8080
+        ]
+      )
+    ]
   end
 
   def children(_target) do
