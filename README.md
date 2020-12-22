@@ -25,3 +25,29 @@ To start this Nerves app:
   * Burn to an SD card with `mix firmware.burn`
   * Connect the Raspberry Pi to some serial port
   * Open http://nerves.local
+
+
+## Other usefull Stuff
+  * Upgrade SDCard without losing data with `mix firmware.burn --task upgrade`
+  * Update over SSH with `./upload $IP_OR_HOSTNAME`
+  * Connect to an IEx console with `ssh $IP_OR_HOSTNAME`
+  * Set the serialnumber (hostname = nerves-$SERIAL_NUMBER) with
+    `cmd("fw_setenv serial_number abc123")` on the remote IEx console.
+  * Configure WiFi using VintageNet:
+
+```
+VintageNet.configure("wlan0", %{
+  type: VintageNetWiFi,
+  vintage_net_wifi: %{
+    networks: [
+      %{
+        key_mgmt: :wpa_psk,
+        ssid: "my_network_ssid",
+        psk: "a_passphrase_or_psk"
+      }
+    ]
+  },
+  ipv4: %{method: :dhcp},
+})
+
+```
