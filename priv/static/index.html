@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://unpkg.com/xterm@4.9.0/css/xterm.css" />
 <script src="https://unpkg.com/xterm@4.9.0/lib/xterm.js"></script>
 <script src="https://unpkg.com/xterm-addon-attach@0.6.0/lib/xterm-addon-attach.js"></script>
+<script src="https://unpkg.com/xterm-addon-fit@0.4.0/lib/xterm-addon-fit.js"></script>
 <style>
     body {
         background: black;
@@ -16,7 +17,10 @@
         var socket = new WebSocket(url.href);
         var attachAddon = new AttachAddon.AttachAddon(socket);
         term.loadAddon(attachAddon);
+        var fitAddon = new FitAddon.FitAddon();
+        term.loadAddon(fitAddon);
         term.open(document.getElementById('terminal'));
+        fitAddon.fit();
     });
 </script>
 <div id="terminal"></div>
